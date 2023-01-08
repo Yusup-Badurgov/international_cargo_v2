@@ -62,18 +62,20 @@ class AppCRUD:
             price = country_dict.get(choice_country).get(int(choice_cube))
 
             if trade_type == 1:
-                result_price = f'Ставка перевозки: {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€\n' \
+                result_price = f'Перевозка {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€\n' \
+                               f'Таможенное оформление в России = {direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n' \
                                f'Таможенное оформление в ЕС = {direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n' \
-                               f'Таможенное оформление в ЕС = {direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n' \
-                               f'Итого стоимость: {price + direction.get("ЭКСПОРТ").get("ТО РФ") + direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n\n'
+                               f'Итого {price + direction.get("ЭКСПОРТ").get("ТО РФ") + direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n' \
+                               f'+Пошлины 30% от заявленной стоимости груза, но не менее чем 4€/кг'
 
                 return result_price
 
             elif trade_type == 0:
-                result_price = f'Ставка перевозки: {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€\n'\
-                               f'Таможенное оформление в РФ = {direction.get("ИМПОРТ").get("ТО РФ")}€\n'\
+                result_price = f'Перевозка {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€\n'\
+                               f'Таможенное оформление в России = {direction.get("ИМПОРТ").get("ТО РФ")}€\n'\
                                f'Таможенное оформление в ЕС = {direction.get("ИМПОРТ").get("ТО ЕС")}€\n'\
-                               f'Итого стоимость: {price + direction.get("ИМПОРТ").get("ТО РФ") + direction.get("ИМПОРТ").get("ТО ЕС")}€\n\n'
+                               f'Итого {price + direction.get("ИМПОРТ").get("ТО РФ") + direction.get("ИМПОРТ").get("ТО ЕС")}€\n' \
+                               f'+Пошлины 30% от заявленной стоимости груза, но не менее чем 4€/кг'
                 return result_price
 
         elif int(choice_cube) in range(5, 101):
@@ -82,17 +84,20 @@ class AppCRUD:
                     + country_dict.get(choice_country).get(4)
 
             if trade_type == 1:
-                result_price = f'Ставка перевозки: {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€\n' \
+                result_price = f'Перевозка {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€\n' \
+                               f'Таможенное оформление в России = {direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n' \
                                f'Таможенное оформление в ЕС = {direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n' \
-                               f'Таможенное оформление в ЕС = {direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n' \
-                               f'Итого стоимость: {price + direction.get("ЭКСПОРТ").get("ТО РФ") + direction.get("ЭКСПОРТ").get("ТО ЕС")}\n\n€'
+                               f'Итого {price + direction.get("ЭКСПОРТ").get("ТО РФ") + direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n' \
+                               f'+Пошлины 30% от заявленной стоимости груза, но не менее чем 4€/кг'
+
                 return result_price
 
             elif trade_type == 0:
-                result_price = f'Ставка перевозки: {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€\n' \
-                               f'Таможанное оформление в РФ = {direction.get("ИМПОРТ").get("ТО РФ")}€\n' \
+                result_price = f'Перевозка {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€\n' \
+                               f'Таможенное оформление в России = {direction.get("ИМПОРТ").get("ТО РФ")}€\n' \
                                f'Таможенное оформление в ЕС = {direction.get("ИМПОРТ").get("ТО ЕС")}€\n' \
-                               f'Итого стоимость: {price + direction.get("ИМПОРТ").get("ТО РФ") + direction.get("ИМПОРТ").get("ТО ЕС")}\n\n€'
+                               f'Итого {price + direction.get("ИМПОРТ").get("ТО РФ") + direction.get("ИМПОРТ").get("ТО ЕС")}€\n' \
+                               f'+Пошлины 30% от заявленной стоимости груза, но не менее чем 4€/кг'
                 return result_price
 
 
