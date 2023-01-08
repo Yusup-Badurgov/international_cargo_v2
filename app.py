@@ -6,7 +6,7 @@ from func import app_CRUD
 window = tk.Tk()
 window.geometry("700x500")
 window.title("Рассчет стоимости перевозки личных вещей | ЕВРОПА")
-
+window.iconbitmap(r'icon.ico')
 
 # Создаем поле со списком для выбора страны
 country_label = tk.Label(text="Выбрать страну:", font="Times 20")
