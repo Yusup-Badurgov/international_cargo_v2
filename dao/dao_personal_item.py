@@ -2,7 +2,7 @@ import sqlite3
 from setup_db import database_1
 
 
-class AppCRUD:
+class PersonalDAO:
 
     def __init__(self, database):
         self.database = database
@@ -61,20 +61,20 @@ class AppCRUD:
         elif int(choice_cube) in country_dict.get(choice_country):
             price = country_dict.get(choice_country).get(int(choice_cube))
 
-            if trade_type == 1:
-                result_price = f'Перевозка {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€\n' \
-                               f'Таможенное оформление в России = {direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n' \
-                               f'Таможенное оформление в ЕС = {direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n' \
-                               f'Итого {price + direction.get("ЭКСПОРТ").get("ТО РФ") + direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n' \
-                               f'+Пошлины 30% от заявленной стоимости груза, но не менее чем 4€/кг'
+            if trade_type == "Экспорт":
+                result_price = f'Перевозка {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€<br>' \
+                               f'Таможенное оформление в России = {direction.get("ЭКСПОРТ").get("ТО ЕС")}€.<br>' \
+                               f'Таможенное оформление в ЕС = {direction.get("ЭКСПОРТ").get("ТО ЕС")}€.\n' \
+                               f'Итого {price + direction.get("ЭКСПОРТ").get("ТО РФ") + direction.get("ЭКСПОРТ").get("ТО ЕС")}€.<br>' \
+                               f'+Пошлины 30% от заявленной стоимости груза, но не менее чем 2-4€/кг'
 
                 return result_price
 
-            elif trade_type == 0:
-                result_price = f'Перевозка {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€\n'\
-                               f'Таможенное оформление в России = {direction.get("ИМПОРТ").get("ТО РФ")}€\n'\
-                               f'Таможенное оформление в ЕС = {direction.get("ИМПОРТ").get("ТО ЕС")}€\n'\
-                               f'Итого {price + direction.get("ИМПОРТ").get("ТО РФ") + direction.get("ИМПОРТ").get("ТО ЕС")}€\n' \
+            elif trade_type == "Импорт":
+                result_price = f'Перевозка {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€.<br>'\
+                               f'Таможенное оформление в России = {direction.get("ИМПОРТ").get("ТО РФ")}€.<br>'\
+                               f'Таможенное оформление в ЕС = {direction.get("ИМПОРТ").get("ТО ЕС")}€<br>'\
+                               f'Итого {price + direction.get("ИМПОРТ").get("ТО РФ") + direction.get("ИМПОРТ").get("ТО ЕС")}€.<br>' \
                                f'+Пошлины 30% от заявленной стоимости груза, но не менее чем 4€/кг'
                 return result_price
 
@@ -83,22 +83,22 @@ class AppCRUD:
             price = (need_cube * country_dict.get(choice_country).get('add_mn')) \
                     + country_dict.get(choice_country).get(4)
 
-            if trade_type == 1:
-                result_price = f'Перевозка {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€\n' \
-                               f'Таможенное оформление в России = {direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n' \
-                               f'Таможенное оформление в ЕС = {direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n' \
-                               f'Итого {price + direction.get("ЭКСПОРТ").get("ТО РФ") + direction.get("ЭКСПОРТ").get("ТО ЕС")}€\n' \
+            if trade_type == "Экспорт":
+                result_price = f'Перевозка {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€<br>' \
+                               f'Таможенное оформление в России = {direction.get("ЭКСПОРТ").get("ТО ЕС")}€<br>' \
+                               f'Таможенное оформление в ЕС = {direction.get("ЭКСПОРТ").get("ТО ЕС")}€<br>' \
+                               f'Итого {price + direction.get("ЭКСПОРТ").get("ТО РФ") + direction.get("ЭКСПОРТ").get("ТО ЕС")}€<br>' \
                                f'+Пошлины 30% от заявленной стоимости груза, но не менее чем 4€/кг'
 
                 return result_price
 
-            elif trade_type == 0:
-                result_price = f'Перевозка {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€\n' \
-                               f'Таможенное оформление в России = {direction.get("ИМПОРТ").get("ТО РФ")}€\n' \
-                               f'Таможенное оформление в ЕС = {direction.get("ИМПОРТ").get("ТО ЕС")}€\n' \
-                               f'Итого {price + direction.get("ИМПОРТ").get("ТО РФ") + direction.get("ИМПОРТ").get("ТО ЕС")}€\n' \
+            elif trade_type == "Импорт":
+                result_price = f'Перевозка {int(choice_cube)} м3 (вес до {int(choice_cube) * 120} кг) = {price}€<br>' \
+                               f'Таможенное оформление в России = {direction.get("ИМПОРТ").get("ТО РФ")}€<br>' \
+                               f'Таможенное оформление в ЕС = {direction.get("ИМПОРТ").get("ТО ЕС")}€<br>' \
+                               f'Итого {price + direction.get("ИМПОРТ").get("ТО РФ") + direction.get("ИМПОРТ").get("ТО ЕС")}€<br>' \
                                f'+Пошлины 30% от заявленной стоимости груза, но не менее чем 4€/кг'
                 return result_price
 
 
-app_CRUD = AppCRUD(database_1)
+personal_dao = PersonalDAO(database_1)

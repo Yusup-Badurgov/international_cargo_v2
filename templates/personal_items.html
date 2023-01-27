@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shipping Cost Calculator</title>
+    <style>
+        /* Add a background color to the body */
+body {
+  background-color: #f1f1f1;
+}
+
+/* Center the form on the page */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto;
+  width: 50%;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px #ccc;
+}
+
+/* Style the labels and inputs */
+label, input {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Style the select boxes */
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 4px;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Style the result div */
+#result {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px #ccc;
+  text-align: center;
+}
+
+
+button#copy {
+  font-size: 20px;
+  padding: 10px 20px;
+}
+
+button#copy {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+button#copy:hover {
+  background-color: #3e8e41;
+}
+
+
+    </style>
+</head>
+<body>
+  <h1 align ="center">Расчет стоимости перевозки личных вещей</h1>
+  <form>
+    <label for="country">Выбрать страну:</label>
+    <select id="country" name="country">
+      {% for country in countries %}
+        <option value="{{ country }}">{{ country }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <label for="direction">Укажите нправление:</label>
+    <select id="direction" name="direction">
+        <option value="Импорт">Импорт</option>
+        <option value="Экспорт">Экспорт</option>
+    </select>
+    <br>
+    <label for="cubes">Количество кубов:</label>
+    <input type="number" id="cubes" name="cubes">
+    <br>
+    <input type="submit" value="Calculate">
+  </form>
+  <div id="result"></div>
+  <button id="copy" onclick="copy()">КОПИРОВАТЬ</button>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    function copy() {
+      var text = document.getElementById("result").innerText;
+      navigator.clipboard.writeText(text);
+    }
+    $(document).ready(function(){
+    $("form").submit(function(event){
+      event.preventDefault();
+      var formData = $(this).serialize();
+      $.ajax({
+        type: "POST",
+        url: "/",
+        data: formData,
+        success: function(data){
+          $("#result").html(data);
+        }
+      });
+    });
+  });
+  </script>
+</body>
+</html>
