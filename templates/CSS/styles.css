@@ -1,0 +1,58 @@
+/* Add a background color to the body */
+body {
+  background-color: #f1f1f1;
+}
+
+/* Center the form on the page */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto;
+  width: 50%;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px #ccc;
+}
+
+/* Style the labels and inputs */
+label, input {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Style the select boxes */
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 4px;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Style the result div */
+#result {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px #ccc;
+  text-align: center;
+}
+
